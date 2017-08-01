@@ -1,0 +1,176 @@
+
+格式化字符
+   %s,把变量的值或字符串放到%s所在的位置
+   %r，把变量的原始数据显示出来，会显示所有的。
+    区别：%r用来做调试最好。
+	
+round()使数据四舍五入，float
+
+  requests模块
+1、支持HTTP的连接和保持，支持使用cookie保持会话，支持文件上传，支持自动响应内容的编码，支持国际化的URL和POST
+数据自动编码。
+2、下载 http://docs.python-requests.org/en/latest/user/install/#install 
+       转到github上下载requests的模块程序到本地文件夹
+3、安装：在powershell终端修改运行文件夹到requests模块所在路径
+	     运行 python setup.py install 命令
+	#HTTP请求类型
+#get类型
+r = requests.get('https://github.com/timeline.json')
+#post类型
+r = requests.post("http://m.ctrip.com/post")
+#put类型
+r = requests.put("http://m.ctrip.com/put")
+#delete类型
+r = requests.delete("http://m.ctrip.com/delete")
+#head类型
+r = requests.head("http://m.ctrip.com/head")
+#options类型
+r = requests.options("http://m.ctrip.com/get")
+
+#获取响应内容
+print r.content #以字节的方式去显示，中文显示为字符
+print r.text #以文本的方式去显示
+
+#URL传递参数
+payload = {'keyword': '日本', 'salecityid': '2'}
+r = requests.get("http://m.ctrip.com/webapp/tourvisa/visa_list", params=payload) 
+print r.url #示例为http://m.ctrip.com/webapp/tourvisa/visa_list?salecityid=2&keyword=日本
+
+#获取/修改网页编码
+r = requests.get('https://github.com/timeline.json')
+print r.encoding
+r.encoding = 'utf-8'
+
+#json处理
+r = requests.get('https://github.com/timeline.json')
+print r.json() #需要先import json    
+
+#定制请求头
+url = 'http://m.ctrip.com'
+headers = {'User-Agent' : 'Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 4 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19'}
+r = requests.post(url, headers=headers)
+print r.request.headers
+
+#复杂post请求
+url = 'http://m.ctrip.com'
+payload = {'some': 'data'}
+r = requests.post(url, data=json.dumps(payload)) #如果传递的payload是string而不是dict，需要先调用dumps方法格式化一下
+
+#post多部分编码文件
+url = 'http://m.ctrip.com'
+files = {'file': open('report.xls', 'rb')}
+r = requests.post(url, files=files)
+
+#响应状态码
+r = requests.get('http://m.ctrip.com')
+print r.status_code
+    
+#响应头
+r = requests.get('http://m.ctrip.com')
+print r.headers
+print r.headers['Content-Type']
+print r.headers.get('content-type') #访问响应头部分内容的两种方式
+    
+#Cookies
+url = 'http://example.com/some/cookie/setting/url'
+r = requests.get(url)
+r.cookies['example_cookie_name']    #读取cookies
+    
+url = 'http://m.ctrip.com/cookies'
+cookies = dict(cookies_are='working')
+r = requests.get(url, cookies=cookies) #发送cookies
+
+#设置超时时间
+r = requests.get('http://m.ctrip.com', timeout=0.001)
+
+#设置访问代理
+proxies = {
+           "http": "http://10.10.10.10:8888",
+           "https": "http://10.10.10.100:4444",
+          }
+r = requests.get('http://m.ctrip.com', proxies=proxies)	 
+ 
+ pip模块
+1、下载安装  https://pypi.python.org/pypi/pip 
+输入 "python setup.py install" 添加环境变量 path = C:\Python26\ArcGIS10.0\Scripts
+2、进入命令行输入python -m pip，有用法介绍则安装成功
+3、输入 "python -m pip install package"，package为安装包名称，就可以随意使用了。如pip install pandas
+
+pandas数据分析包
+含有大量的库和数据结构模型，
+
+python只会运行遇到的是True的第一个块
+
+
+Python 的列表数据类型包含更多的方法。 这里是所有的列表对象方法：
+list.append(x)
+把一个元素添加到链表的结尾，相当于 a[len(a):] = [x] 。
+
+list.extend(L)
+将一个给定列表中的所有元素都添加到另一个列表中，相当于 a[len(a):] = L 。
+
+list.insert(i, x)
+在指定位置插入一个元素。第一个参数是准备插入到其前面的那个元素的索引，例如 a.insert(0, x) 会插入到整个链表之前，而 a.insert(len(a), x) 相当于 a.append(x) 。
+
+list.remove(x)
+删除链表中值为 x 的第一个元素。如果没有这样的元素，就会返回一个错误。
+
+list.pop([i])
+从链表的指定位置删除元素，并将其返回。如果没有指定索引， a.pop() 返回最后一个元素。元素随即从链表中被删除。（方法中 i 两边的方括号表示这个参数是可选的，而不是要求你输入一对方括号，你会经常在 Python 库参考手册中遇到这样的标记。）
+
+list.index(x)
+返回链表中第一个值为 x 的元素的索引。如果没有匹配的元素就会返回一个错误。
+
+list.count(x)
+返回 x 在链表中出现的次数。
+
+list.sort()
+对链表中的元素就地进行排序。
+
+list.reverse()
+就地倒排链表中的元素。
+
+
+pygame
+1,下载安装，官网提示64位系统也用32位pygame http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame
+
+找到 pygame 你对应的版本并下载到c盘。32是32位的，64是64位的
+2，64位的：使用python -m pip install wheel,
+       修改到目标路径，python -m pip install *.whl
+在Python自带的编辑器IDLE中或者Python shell中不能使用cd命令，那么跳到目标路径呢。
+
+方法是使用os包下的相关函数实现路径切换功能。
+
+import os  
+os.getcwd() #获取当前路径  
+os.chdir("D:\\test") #跳到目标路径下  
+os.chdir('D:\\test') #单引号、双引号都可以
+
+在python shell 中Alt + p 往前; Alt+n 从头开始历史输入
+
+
+python编码规范
+1、一般不用分号分隔行
+2、行长度不超过80个字符
+   除了，导入的模块字符/URL长度
+   分行用圆括号表示隐式行连接，并在下一行缩进4个空格
+3、四个空格缩进，定义与方法间加空行
+4、二元操作符两边加空格，算术运算符两边随意但要一致，赋值不加空格
+5、shebang/hashbang #!只有被直接执行的文件中才有必要加入#！
+6、注释"""
+      """ 可以被__doc__自动提取被pydoc所用
+7、模块，许可样板？？
+8、函数和方法的注释应含  args：
+							参数名：
+							参数名：
+						returns：类型和语义
+						raises：列出与接口有关的所有异常
+9、类的注释应含 属性（Attributes）:
+								名：
+								名：
+10、推荐使用with语句
+11、#TODO(ZOU)
+12、命名格式：ClassName ,ExceptionName,GLOAL_VAR_NAME, other_name_format
+          内部的 _ClassName,.....
+13.Main
+

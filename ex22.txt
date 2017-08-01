@@ -1,0 +1,51 @@
+字符         名称            用法
+print       打印，输出      print "字符串"，变量，数学运算，数字
+Ture        判断正确        python 的关键字
+False       判断错误        python 的关键字
+raw_input   获取用户输入    输出字符串格式
+input       获取用户输入    输出原输入的格式，为被eval处理过的raw_input
+int         整形            int()输出整数
+float       浮点型          输出小数
+double                       四舍五入
+from        从              从...调入函数
+sys         系统函数库       
+os.path     寻找地址
+exists      判断存在
+rewind      倒带
+import      导入
+return      返回值
+script      脚本
+argv        参数变量
+open        打开文件
+def         定义一个函数     def 函数名（）
+*args       *表示含多个变量                
+.truncate   消除
+.seek(0)    寻找字节为0的位置
+.read()     读取
+.readline() 读取一行，并留在读完后的位置
+.close()    保存并关闭文件
+.write()    写
+'w'         以写入方式打开   会对文件重新写入
+'r'         以只读方式打开
+'a'         增加内容的方式打开 会在原有文件后添加内容
+
+'',""       引号
+#           注释
++           加
+-			减
+*			乘
+/			除
+%			余
+<,<=		判断
+>,>=		
+=
+%s
+%d
+%r
+\n
+\t
+\r
+\\
+\'
+\"
+""" """
