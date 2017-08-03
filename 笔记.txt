@@ -1,0 +1,218 @@
+﻿
+格式化字符
+   %s,把变量的值或字符串放到%s所在的位置
+   %r，把变量的原始数据显示出来，会显示所有的。
+    区别：%r用来做调试最好。
+	
+round()使数据四舍五入，float
+
+  requests模块
+1、支持HTTP的连接和保持，支持使用cookie保持会话，支持文件上传，支持自动响应内容的编码，支持国际化的URL和POST
+数据自动编码。
+2、下载 http://docs.python-requests.org/en/latest/user/install/#install 
+       转到github上下载requests的模块程序到本地文件夹
+3、安装：在powershell终端修改运行文件夹到requests模块所在路径
+	     运行 python setup.py install 命令
+	#HTTP请求类型
+#get类型
+r = requests.get('https://github.com/timeline.json')
+#post类型
+r = requests.post("http://m.ctrip.com/post")
+#put类型
+r = requests.put("http://m.ctrip.com/put")
+#delete类型
+r = requests.delete("http://m.ctrip.com/delete")
+#head类型
+r = requests.head("http://m.ctrip.com/head")
+#options类型
+r = requests.options("http://m.ctrip.com/get")
+
+#获取响应内容
+print r.content #以字节的方式去显示，中文显示为字符
+print r.text #以文本的方式去显示
+
+#URL传递参数
+payload = {'keyword': '日本', 'salecityid': '2'}
+r = requests.get("http://m.ctrip.com/webapp/tourvisa/visa_list", params=payload) 
+print r.url #示例为http://m.ctrip.com/webapp/tourvisa/visa_list?salecityid=2&keyword=日本
+
+#获取/修改网页编码
+r = requests.get('https://github.com/timeline.json')
+print r.encoding
+r.encoding = 'utf-8'
+
+#json处理
+r = requests.get('https://github.com/timeline.json')
+print r.json() #需要先import json    
+
+#定制请求头
+url = 'http://m.ctrip.com'
+headers = {'User-Agent' : 'Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 4 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19'}
+r = requests.post(url, headers=headers)
+print r.request.headers
+
+#复杂post请求
+url = 'http://m.ctrip.com'
+payload = {'some': 'data'}
+r = requests.post(url, data=json.dumps(payload)) #如果传递的payload是string而不是dict，需要先调用dumps方法格式化一下
+
+#post多部分编码文件
+url = 'http://m.ctrip.com'
+files = {'file': open('report.xls', 'rb')}
+r = requests.post(url, files=files)
+
+#响应状态码
+r = requests.get('http://m.ctrip.com')
+print r.status_code
+    
+#响应头
+r = requests.get('http://m.ctrip.com')
+print r.headers
+print r.headers['Content-Type']
+print r.headers.get('content-type') #访问响应头部分内容的两种方式
+    
+#Cookies
+url = 'http://example.com/some/cookie/setting/url'
+r = requests.get(url)
+r.cookies['example_cookie_name']    #读取cookies
+    
+url = 'http://m.ctrip.com/cookies'
+cookies = dict(cookies_are='working')
+r = requests.get(url, cookies=cookies) #发送cookies
+
+#设置超时时间
+r = requests.get('http://m.ctrip.com', timeout=0.001)
+
+#设置访问代理
+proxies = {
+           "http": "http://10.10.10.10:8888",
+           "https": "http://10.10.10.100:4444",
+          }
+r = requests.get('http://m.ctrip.com', proxies=proxies)	 
+ 
+ pip模块
+1、下载安装  https://pypi.python.org/pypi/pip 
+输入 "python setup.py install" 添加环境变量 path = C:\Python26\ArcGIS10.0\Scripts
+2、进入命令行输入python -m pip，有用法介绍则安装成功
+3、输入 "python -m pip install package"，package为安装包名称，就可以随意使用了。如pip install pandas
+
+pandas数据分析包
+含有大量的库和数据结构模型，
+
+python只会运行遇到的是True的第一个块
+
+
+Python 的列表数据类型包含更多的方法。 这里是所有的列表对象方法：
+list.append(x)
+把一个元素添加到链表的结尾，相当于 a[len(a):] = [x] 。
+
+list.extend(L)
+将一个给定列表中的所有元素都添加到另一个列表中，相当于 a[len(a):] = L 。
+
+list.insert(i, x)
+在指定位置插入一个元素。第一个参数是准备插入到其前面的那个元素的索引，例如 a.insert(0, x) 会插入到整个链表之前，而 a.insert(len(a), x) 相当于 a.append(x) 。
+
+list.remove(x)
+删除链表中值为 x 的第一个元素。如果没有这样的元素，就会返回一个错误。
+
+list.pop([i])
+从链表的指定位置删除元素，并将其返回。如果没有指定索引， a.pop() 返回最后一个元素。元素随即从链表中被删除。（方法中 i 两边的方括号表示这个参数是可选的，而不是要求你输入一对方括号，你会经常在 Python 库参考手册中遇到这样的标记。）
+
+list.index(x)
+返回链表中第一个值为 x 的元素的索引。如果没有匹配的元素就会返回一个错误。
+
+list.count(x)
+返回 x 在链表中出现的次数。
+
+list.sort()
+对链表中的元素就地进行排序。
+
+list.reverse()
+就地倒排链表中的元素。
+
+
+pygame
+1,下载安装，官网提示64位系统也用32位pygame http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame
+
+找到 pygame 你对应的版本并下载到c盘。32是32位的，64是64位的
+2，64位的：使用python -m pip install wheel,
+       修改到目标路径，python -m pip install *.whl
+在Python自带的编辑器IDLE中或者Python shell中不能使用cd命令，那么跳到目标路径呢。
+
+方法是使用os包下的相关函数实现路径切换功能。
+
+import os  
+os.getcwd() #获取当前路径  
+os.chdir("D:\\test") #跳到目标路径下  
+os.chdir('D:\\test') #单引号、双引号都可以
+
+在python shell 中Alt + p 往前; Alt+n 从头开始历史输入
+
+
+python编码规范
+1、一般不用分号分隔行
+2、行长度不超过80个字符
+   除了，导入的模块字符/URL长度
+   分行用圆括号表示隐式行连接，并在下一行缩进4个空格
+3、四个空格缩进，定义与方法间加空行
+4、二元操作符两边加空格，算术运算符两边随意但要一致，赋值不加空格
+5、shebang/hashbang #!只有被直接执行的文件中才有必要加入#！
+6、注释"""
+      """ 可以被__doc__自动提取被pydoc所用
+7、模块，许可样板？？
+8、函数和方法的注释应含  args：
+							参数名：
+							参数名：
+						returns：类型和语义
+						raises：列出与接口有关的所有异常
+9、类的注释应含 属性（Attributes）:
+								名：
+								名：
+10、推荐使用with语句
+11、#TODO(ZOU)
+12、命名格式：ClassName ,ExceptionName,GLOAL_VAR_NAME, other_name_format
+          内部的 _ClassName,.....
+13.Main
+
+          %c     格式化字符及其ASCII码
+          %s     格式化字符串
+          %d     格式化整数
+          %u     格式化无符号整型
+          %o     格式化无符号八进制数
+          %x     格式化无符号十六进制数
+          %X     格式化无符号十六进制数（大写）
+          %f     格式化浮点数字，可指定小数点后的精度
+          %e     用科学计数法格式化浮点数
+          %E     作用同%e，用科学计数法格式化浮点数
+          %g     %f和%e的简写
+          %G     %f 和 %E 的简写
+          %p     用十六进制数格式化变量的地址
+
+序号	报错提示	解释
+1	AttributeError	属性错误，特性引用和赋值失败时会引发属性错误
+2	NameError	试图访问的变量名不存在
+3	SyntaxError	语法错误，代码形式错误
+4	Exception	所有异常的基类，因为所有python异常类都是基类Exception的其中一员，异常都是从基类Exception继承的，并且都在exceptions模块中定义。
+5	IOError	一般常见于打开不存在文件时会引发IOError错误，也可以解理为输出输入错误
+6	KeyError	使用了映射中不存在的关键字（键）时引发的关键字错误
+7	IndexError	索引错误，使用的索引不存在，常索引超出序列范围，什么是索引
+8	TypeError	类型错误，内建操作或是函数应于在了错误类型的对象时会引发类型错误
+9	ZeroDivisonError	除数为0，在用除法操作时，第二个参数为0时引发了该错误
+10	ValueError	值错误，传给对象的参数类型不正确，像是给int()函数传入了字符串数据类型的参数
+11	SyntaxError ：invalid syntax	忘记在 if , elif, else , for , while , class ,def 声明末尾添加冒号（：）
+12	SyntaxError: invalid syntax	使用 = 而不是 ==
+13	IndentationError：unexpected indent”、“IndentationError：unindent does not match any outer indetation level”以及“IndentationError：expected an indented block”）	错误的使用缩进量。记住缩进增加只用在以：结束的语句之后，而之后必须恢复到之前的缩进格式。
+14	TypeError: 'list' object cannot be interpreted as an integer	在 for 循环语句中忘记调用 len()。通常你想要通过索引来迭代一个list或者string的元素，这需要调用 range() 函数。要记得返回len 值而不是返回这个列表。
+15	TypeError: 'str' object does not support item assignment	尝试修改string的值。string是一种不可变的数据类型
+16	TypeError: Can't convert 'int' object to str implicitly	尝试连接非字符串值与字符串
+17	SyntaxError: EOL while scanning string literal	在字符串首尾忘记加引号
+18	NameError: name 'fooba' is not defined	变量或者函数名拼写错误
+19	AttributeError: 'str' object has no attribute 'lowerr'	方法名拼写错误
+20	IndexError: list index out of range	引用超过list最大索引
+21	KeyError：‘spam’	使用不存在的字典键值
+22	SyntaxError：invalid syntax	尝试使用Python关键字作为变量名
+23	NameError: name 'foobar' is not defined	在一个定义新变量中使用增值操作符。不要在声明变量时使用0或者空字符串作为初始值，这样使用自增操作符的一句spam += 1等于spam = spam + 1，这意味着spam需要指定一个有效的初始值。
+24	UnboundLocalError: local variable 'foobar' referenced before assignment	在定义局部变量前在函数中使用局部变量
+25	TypeError: 'range' object does not support item assignment	尝试使用 range()创建整数列表
+26	SyntaxError: invalid syntax	不错在 ++ 或者 -- 自增自减操作符
+27	TypeError: myMethod() takes no arguments (1 given)	忘记为方法的第一个参数添加self参数
