@@ -2,6 +2,7 @@
 用一个小程序来做，尽量多写些程序来巩固记忆。
 一，关键字
 and 与
+关键字
 del 删除内容
 from 从...库里提取
 not 非
@@ -32,5 +33,32 @@ def 定义函数
 for 循环
 lambda
 try
+
+数据类型
+True
+False
+None
+strings
+numbers
+floats
+lists
+
+字符串转义序列
+   \\                           反斜杠（\）
+   \'                           单引号（'）
+   \"                           双引号（"）
+   \a                           ASCII响铃符（BEL）
+   \b                           ASCII退格符（BS）
+   \f                           ASCII进纸符（FF）
+   \n                           ASCII换行符（LF）
+   \r                           ASCII回车符（CR）
+   \t                           ASCII水平制表符（TAB）
+   \v                           ASCII 垂直制表符（VT）
+
+ 
+ 
+ 字符串格式化
+  
+ 
 
 

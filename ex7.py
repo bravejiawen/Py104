@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # 打印这一行
 print "mary had a little lamb."
-#将字符串 snow 放到%s的位置上
+#将字符串 snow 放到%s的位置上，（字符串不是变量）
 print "its fleece was white as %s." %'snow'
 print "and everywhere that mary went."
 #对字符串进行乘10，打印10遍
